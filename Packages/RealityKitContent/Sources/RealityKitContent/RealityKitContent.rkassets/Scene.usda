@@ -1,0 +1,542 @@
+#usda 1.0
+(
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+reorder rootPrims = ["Root", "GridMaterial"]
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Earth", "Sun", "SkySphere", "SkyMaterial", "EarthMove"]
+    rel material:binding = None (
+        bindMaterialAs = "weakerThanDescendants"
+    )
+
+    def Xform "Transform" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["Sun_Earth_Group", "disk"]
+        float3 xformOp:scale = (0.3, 0.3, 0.3)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Xform "Sun_Earth_Group" (
+            active = true
+        )
+        {
+            reorder nameChildren = ["Sun_Group", "RCP_BehaviorsContainer", "OnTap", "EnvironmentLightingConfiguration", "VirtualEnvironmentProbe", "Earth_Group"]
+            float3 xformOp:translate = (0, 0.3, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Xform "Sun_Group" (
+                active = true
+                customData = {
+                    float3 rotationEulerHint = (0, 0, 0)
+                }
+            )
+            {
+                reorder nameChildren = ["SpotLight", "Sun"]
+                quatf xformOp:orient = (0.99999994, 0, 0, 0)
+                float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                float3 xformOp:translate = (0, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def "Sun" (
+                    active = true
+                    customData = {
+                        float3 rotationEulerHint = (0, 1.5707963, 0)
+                    }
+                    references = @Sun.usdz@
+                )
+                {
+                    quatf xformOp:orient = (0.70710677, 0, 0.70710677, 0)
+                    float3 xformOp:scale = (0.25, 0.24999993, 0.24999997)
+                    float3 xformOp:translate = (0.3, 0, 1.82384e-8)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+
+                def Xform "SpotLight" (
+                    customData = {
+                        float3 rotationEulerHint = (0, 1.5707963, 0)
+                    }
+                )
+                {
+                    quatf xformOp:orient = (0.70710677, 0, 0.70710677, 0)
+                    float3 xformOp:translate = (0.6, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                    def RealityKitComponent "SpotLight"
+                    {
+                        float attenuationFalloffExponent = 1
+                        float3 color = (0.8900806, 1, 0.70418864)
+                        uniform token info:id = "RealityKit.SpotLight"
+                        float innerAngle = 90
+                        float intensity = 800
+                        float outerAngle = 120
+
+                        def RealityKitStruct "Shadow"
+                        {
+                            token cullMode = "Front"
+                            bool isEnabled = 0
+                        }
+                    }
+                }
+            }
+
+            def RealityKitComponent "EnvironmentLightingConfiguration"
+            {
+                float environmentLightingWeight = 0
+                uniform token info:id = "RealityKit.EnvironmentLightingConfiguration"
+            }
+
+            def RealityKitComponent "VirtualEnvironmentProbe"
+            {
+                token blendMode = "none"
+                uniform token info:id = "RealityKit.VirtualEnvironmentProbe"
+
+                def RealityKitStruct "Resource1"
+                {
+                    float intensityExponent = -15
+                }
+
+                def RealityKitStruct "Resource2"
+                {
+                }
+            }
+
+            def Xform "Earth_Group" (
+                active = true
+            )
+            {
+                reorder nameChildren = ["pixel_girl", "Earth", "RCP_BehaviorsContainer", "OnAddedToScene", "OnNotification"]
+                def "Earth" (
+                    active = true
+                    customData = {
+                        float3 rotationEulerHint = (0, 0, 0)
+                    }
+                    references = @Earth.usdz@
+                )
+                {
+                    reorder nameChildren = ["geom", "RCP_BehaviorsContainer", "OnNotification", "OnAddedToScene"]
+                    quatf xformOp:orient = (1, 0, 0, 0)
+                    float3 xformOp:scale = (0.99999976, 0.99999976, 0.99999976)
+                    float3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                    over "geom"
+                    {
+                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                        over "realistic" (
+                            customData = {
+                                float3 rotationEulerHint = (0, 1.5707963, 0)
+                            }
+                        )
+                        {
+                            quatf xformOp:orient = (0.70710677, 0, 0.70710677, 0)
+                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                            over "materials"
+                            {
+                                over "usdpreviewsurface8sg"
+                                {
+                                    string inputs:earth_realistic_ao_1:varname (
+                                        customData = {
+                                            dictionary realitykit = {
+                                                float2 positionInSubgraph = (317, 890.5)
+                                            }
+                                        }
+                                    )
+                                    string inputs:earth_realistic_bc_1:varname (
+                                        customData = {
+                                            dictionary realitykit = {
+                                                float2 positionInSubgraph = (604, 890.5)
+                                            }
+                                        }
+                                    )
+                                    string inputs:earth_realistic_n_1:varname (
+                                        customData = {
+                                            dictionary realitykit = {
+                                                float2 positionInSubgraph = (891, 890.5)
+                                            }
+                                        }
+                                    )
+                                    string inputs:earth_realistic_r_1:varname (
+                                        customData = {
+                                            dictionary realitykit = {
+                                                float2 positionInSubgraph = (1178, 890.5)
+                                            }
+                                        }
+                                    )
+                                    token outputs:realitykit:vertex
+                                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1406.75, 326.25)
+
+                                    over "earth_realistic_r_1_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (619.25, 271)
+                                    }
+
+                                    over "earth_realistic_mat_mtlx"
+                                    {
+                                        float inputs:metallic = 0
+                                        float inputs:roughness = 1
+                                        delete float inputs:roughness.connect = </Root/Transform/Sun_Earth_Group/Earth/geom/realistic/materials/usdpreviewsurface8sg/earth_realistic_r_1_mtlx.outputs:out>
+                                        float2 ui:nodegraph:node:pos = (1154.5, 326.25)
+                                        int ui:nodegraph:node:stackingOrder = 19
+                                        string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:roughness", "Advanced", "inputs:clearcoatRoughness"]
+                                    }
+
+                                    over "earth_realistic_ao_1_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (350, 441.5)
+                                    }
+
+                                    over "earth_realistic_bc_1_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (885.5, 100.5)
+                                    }
+
+                                    over "earth_realistic_n_1_mtlx_scale"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (619.25, 702.5)
+                                    }
+
+                                    over "Lookup_st"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (91, 346.25)
+                                    }
+
+                                    over "earth_realistic_n_1_mtlx_offset"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (885.5, 702.5)
+                                    }
+
+                                    over "earth_realistic_n_1_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (350, 702.5)
+                                    }
+                                }
+
+                                over "usdpreviewsurface7sg"
+                                {
+                                    string inputs:earth_clouds_realistic_bc_1:varname (
+                                        customData = {
+                                            dictionary realitykit = {
+                                                float2 positionInSubgraph = (321.75, 898.5)
+                                            }
+                                        }
+                                    )
+                                    string inputs:earth_clouds_realistic_n_1:varname (
+                                        customData = {
+                                            dictionary realitykit = {
+                                                float2 positionInSubgraph = (608.75, 898.5)
+                                            }
+                                        }
+                                    )
+                                    string inputs:earth_clouds_realistic_o_1:varname (
+                                        customData = {
+                                            dictionary realitykit = {
+                                                float2 positionInSubgraph = (895.75, 898.5)
+                                            }
+                                        }
+                                    )
+                                    string inputs:earth_clouds_realistic_r_1:varname (
+                                        customData = {
+                                            dictionary realitykit = {
+                                                float2 positionInSubgraph = (1182.75, 898.5)
+                                            }
+                                        }
+                                    )
+                                    token outputs:realitykit:vertex
+                                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1416.25, 330.25)
+
+                                    over "earth_clouds_realistic_n_1_mtlx_scale"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (623, 449.5)
+                                    }
+
+                                    over "earth_clouds_realistic_bc_1_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (623, 271)
+                                    }
+
+                                    over "earth_clouds_realistic_r_1_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (893, 100.5)
+                                    }
+
+                                    over "earth_clouds_realistic_n_1_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (350, 449.5)
+                                    }
+
+                                    over "earth_clouds_realistic_mat_mtlx"
+                                    {
+                                        float inputs:metallic
+                                        float inputs:roughness = 1
+                                        delete float inputs:roughness.connect = </Root/Transform/Sun_Earth_Group/Earth/geom/realistic/materials/usdpreviewsurface7sg/earth_clouds_realistic_r_1_mtlx.outputs:out>
+                                        float2 ui:nodegraph:node:pos = (1163, 330.25)
+                                        int ui:nodegraph:node:stackingOrder = 1
+                                    }
+
+                                    over "earth_clouds_realistic_o_1_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (350, 710.5)
+                                    }
+
+                                    over "earth_clouds_realistic_n_1_mtlx_offset"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (893, 449.5)
+                                    }
+
+                                    over "Lookup_st"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (91, 354.25)
+                                    }
+                                }
+                            }
+
+                            over "geo"
+                            {
+                                over "lod0"
+                                {
+                                    over "earth_realistc_lod0"
+                                    {
+                                        def RealityKitComponent "GroundingShadow"
+                                        {
+                                            uniform token info:id = "RealityKit.GroundingShadow"
+                                        }
+                                    }
+
+                                    over "earth_cloud_realistic_lod0"
+                                    {
+                                        def RealityKitComponent "GroundingShadow"
+                                        {
+                                            uniform token info:id = "RealityKit.GroundingShadow"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                def RealityKitComponent "RCP_BehaviorsContainer"
+                {
+                    rel behaviors = [
+                        </Root/Transform/Sun_Earth_Group/Earth_Group/OnAddedToScene>,
+                        </Root/Transform/Sun_Earth_Group/Earth_Group/OnNotification>,
+                    ]
+                    uniform token info:id = "RCP.BehaviorsContainer"
+                }
+
+                def Preliminary_Behavior "OnAddedToScene"
+                {
+                    rel actions = </Root/Transform/Sun_Earth_Group/Earth_Group/OnAddedToScene/Action>
+                    uniform bool exclusive
+                    rel triggers = </Root/Transform/Sun_Earth_Group/Earth_Group/OnAddedToScene/Trigger>
+
+                    def Preliminary_Trigger "Trigger"
+                    {
+                        rel affectedObjects = </Root/Transform/Sun_Earth_Group/Earth_Group>
+                        token info:id = "SceneTransition"
+                    }
+
+                    def Preliminary_Action "Action"
+                    {
+                        rel affectedObjects = </Root>
+                        rel animationLibraryKey = </Root/EarthMove>
+                        rel animationLibraryKeyOverrideKey = </Root/Transform/Sun_Earth_Group/Earth_Group/OnAddedToScene/Trigger>
+                        token info:id = "PlayTimeline"
+                        int loops = 0
+                        int performCount = 1
+                        token type = "serial"
+                    }
+                }
+
+                def Preliminary_Behavior "OnNotification"
+                {
+                    rel actions = </Root/Transform/Sun_Earth_Group/Earth_Group/OnNotification/Action>
+                    uniform bool exclusive
+                    rel triggers = </Root/Transform/Sun_Earth_Group/Earth_Group/OnNotification/Trigger>
+
+                    def Preliminary_Trigger "Trigger"
+                    {
+                        rel affectedObjects = </Root/Transform/Sun_Earth_Group/Earth_Group>
+                        string identifier = "EarthMove"
+                        token info:id = "Notification"
+                    }
+
+                    def Preliminary_Action "Action"
+                    {
+                        rel affectedObjects = </Root>
+                        rel animationLibraryKey = </Root/EarthMove>
+                        rel animationLibraryKeyOverrideKey = </Root/Transform/Sun_Earth_Group/Earth_Group/OnNotification/Trigger>
+                        token info:id = "PlayTimeline"
+                        int loops = 0
+                        int performCount = 1
+                        token type = "serial"
+                    }
+                }
+
+                def "pixel_girl" (
+                    active = true
+                    references = @pixel_girl.usdz@
+                )
+                {
+                    quatf xformOp:orient = (1, 0, 0, 0)
+                    float3 xformOp:scale = (0.033333328, 0.033333328, 0.033333328)
+                    float3 xformOp:translate = (0, 0.1, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                    over "Meshes" (
+                        customData = {
+                            float3 rotationEulerHint = (0, 3.1415927, 0)
+                        }
+                    )
+                    {
+                        quatf xformOp:orient = (-4.371139e-8, 0, 1, 0)
+                        float3 xformOp:scale = (1, 1, 1)
+                        float3 xformOp:translate = (0, 0, 0)
+                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                        over "Sketchfab_model" (
+                            customData = {
+                                float3 rotationEulerHint = (-1.5707964, 0, 0)
+                            }
+                        )
+                        {
+                            quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+                            float3 xformOp:scale = (1, 1, 1)
+                            float3 xformOp:translate = (0, 0, 0)
+                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                        }
+                    }
+                }
+            }
+        }
+
+        def "disk" (
+            active = true
+            references = @disk.usdz@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "Geom"
+            {
+                over "Sketchfab_model"
+                {
+                    quatf xformOp:orient = (1, 0, 0, 0)
+                    float3 xformOp:scale = (1, 1, 1)
+                    float3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                    over "root"
+                    {
+                        over "GLTF_SceneRootNode"
+                        {
+                            quatf xformOp:orient = (1, 0, 0, 0)
+                            float3 xformOp:scale = (1, 1, 1)
+                            float3 xformOp:translate = (0, 0, 0)
+                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                            over "Torus_0" (
+                                customData = {
+                                    float3 rotationEulerHint = (0, 0, 0)
+                                }
+                            )
+                            {
+                                quatf xformOp:orient = (1, 0, 0, 0)
+                                float3 xformOp:scale = (0.1, 0.1, 0.1)
+                                float3 xformOp:translate = (0, 0, 0)
+                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                                over "Object_4"
+                                {
+                                    def RealityKitComponent "GroundingShadow"
+                                    {
+                                        uniform token info:id = "RealityKit.GroundingShadow"
+                                    }
+                                }
+
+                                over "Object_5"
+                                {
+                                    def RealityKitComponent "GroundingShadow"
+                                    {
+                                        uniform token info:id = "RealityKit.GroundingShadow"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+                float opacity = 0.5
+            }
+        }
+    }
+
+    def RealityKitTimeline "EarthMove"
+    {
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["Transform_By", "Transform_By2", "Transform_By22"]
+            def RealityKitAction "Transform_By2"
+            {
+                string actionKind = "moveBy"
+                int blendLayer = 300
+                double duration = 6
+                uniform token info:id = "AEE728F9-DA4A-42C3-90B8-470BA8313E66"
+                float3 position = (0, -0.1, 0)
+                double startTime = 6
+                rel target = </Root/Transform/Sun_Earth_Group/Earth_Group>
+                float2 ui:nodegraph:node:pos = (852.2886, 403.22147)
+                int ui:nodegraph:node:stackingOrder = 2
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "linear"
+                }
+            }
+
+            def RealityKitAction "Transform_By"
+            {
+                string actionKind = "moveBy"
+                int blendLayer = 300
+                double duration = 6
+                uniform token info:id = "AEE728F9-DA4A-42C3-90B8-470BA8313E66"
+                float3 position = (0, 0.1, 0)
+                double startTime = 0
+                rel target = </Root/Transform/Sun_Earth_Group/Earth_Group>
+                float2 ui:nodegraph:node:pos = (832.2886, 383.22147)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "linear"
+                }
+            }
+
+            def RealityKitAction "Notification"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "42AB0E4F-F412-4A31-B367-91132122174D"
+                string notificationName = "EarthMove"
+                double startTime = 12.01
+                rel target = </Root/Transform/Sun_Earth_Group/Earth_Group>
+            }
+        }
+    }
+}
+
