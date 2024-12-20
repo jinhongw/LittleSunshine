@@ -18,6 +18,14 @@ struct SunClockApp: App {
     }
     .windowStyle(.volumetric)
     .windowResizability(.contentMinSize)
+    .persistentSystemOverlays(.hidden)
     .defaultSize(Size3D.init(width: 0.18, height: 0.09, depth: 0.18), in: .meters)
+    
+    WindowGroup(id: AppModel.ViewTag.about.name) {
+      AboutView()
+    }
+    .defaultWindowPlacement { content, context in
+      return WindowPlacement(.trailing(context.windows.last!), size: CGSize.init(width: 480, height: 600))
+    }
   }
 }

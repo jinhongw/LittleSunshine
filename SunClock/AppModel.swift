@@ -11,11 +11,10 @@ import SwiftUI
 @MainActor
 @Observable
 class AppModel {
-    let immersiveSpaceID = "ImmersiveSpace"
-    enum ImmersiveSpaceState {
-        case closed
-        case inTransition
-        case open
-    }
-    var immersiveSpaceState = ImmersiveSpaceState.closed
+  var navPath: [ViewTag] = []
+  
+  enum ViewTag: String {
+    case about
+    var name: String { rawValue.capitalized }
+  }
 }
