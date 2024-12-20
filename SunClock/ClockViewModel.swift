@@ -12,26 +12,45 @@ import RealityKitContent
 import WeatherKit
 
 @MainActor
-class ClockViewModel: NSObject, ObservableObject, @preconcurrency CLLocationManagerDelegate {
-  @Published var sunrise: Date?
-  @Published var sunset: Date?
-  @Published var location: CLLocation?
+@Observable
+class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
+  var sunrise: Date?
+  var sunset: Date?
+  var location: CLLocation?
+  var latitude: Double = 0
+  var longitude: Double = 0
+  
+  weak var appModel: AppModel?
+  let contentEntity = Entity()
+  
   private var timer: Timer?
-
   private let locationManager = CLLocationManager()
   private let weatherService = WeatherService()
-
-  let contentEntity = Entity()
   private var sunGroupEntity: Entity?
   private var earthEntity: Entity?
   private var currentPointEntity: Entity?
-  @Published var latitude: Double = 0
-  @Published var longitude: Double = 0
 
   override init() {
     super.init()
     setupLocationManager()
     startTimer()
+  }
+  
+  func onChangeOfShowCharacter(newValue: Bool) {
+    guard let charater = contentEntity.findEntity(named: "pixel_girl") else { return }
+    if newValue {
+      charater.components.set(OpacityComponent(opacity: 1))
+    } else {
+      charater.components.set(OpacityComponent(opacity: 0))
+    }
+  }
+  
+  func setUpStorageValue() {
+    if let showCharacter = UserDefaults.standard.value(forKey: "showCharacter") as? Bool {
+      onChangeOfShowCharacter(newValue: showCharacter)
+    } else {
+      onChangeOfShowCharacter(newValue: true)
+    }
   }
 
   func setUpContentEntity() async -> Entity {
@@ -44,24 +63,13 @@ class ClockViewModel: NSObject, ObservableObject, @preconcurrency CLLocationMana
     earthEntity = earth
     contentEntity.addChild(scene)
     adjustSunRotation(animated: false)
-
-    let radius: Float = 0.1
-    let pointRadius: Float = 0.005
-//    let northPoint = ModelEntity(mesh: .generateSphere(radius: pointRadius), materials: [SimpleMaterial(color: .systemOrange, isMetallic: false)])
-//    northPoint.position = SIMD3<Float>.init(x: 0, y: radius, z: 0)
-//    earthEntity?.addChild(northPoint)
-
-    let currentPoint = ModelEntity(mesh: .generateSphere(radius: pointRadius), materials: [SimpleMaterial(color: .systemBlue, isMetallic: false)])
-    currentPoint.position = SIMD3<Float>.init(x: 0, y: radius, z: 0)
-    earthEntity?.addChild(currentPoint)
-    currentPointEntity = currentPoint
-
     rotateEarthModel()
+    setUpStorageValue()
     return contentEntity
   }
 
   private func startTimer() {
-    timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { [weak self] _ in
+    timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
       Task { [weak self] in
         await self?.adjustSunRotation()
       }
@@ -69,7 +77,7 @@ class ClockViewModel: NSObject, ObservableObject, @preconcurrency CLLocationMana
   }
 
   deinit {
-    timer?.invalidate()
+//    timer?.invalidate()
   }
 
   /// 设置 LocationManager

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingView: View {
+  @Environment(AppModel.self) private var appModel
   @AppStorage("showCharacter") private var showCharacter = true
   @AppStorage("showCurrentTime") private var showCurrentTime = true
   @AppStorage("showSunriseSunset") private var showSunriseSunset = true
@@ -16,6 +17,9 @@ struct SettingView: View {
       Section {
         Toggle(isOn: $showCharacter) {
           Text("Show character")
+        }
+        .onChange(of: showCharacter) { oldValue, newValue in
+          appModel.clockViewModel.onChangeOfShowCharacter(newValue: newValue)
         }
         Toggle(isOn: $showCurrentTime) {
           Text("Show current time")

@@ -53,7 +53,7 @@ def Xform "Root"
                 {
                     quatf xformOp:orient = (0.70710677, 0, 0.70710677, 0)
                     float3 xformOp:scale = (0.25, 0.24999993, 0.24999997)
-                    float3 xformOp:translate = (0.3, 0, 1.82384e-8)
+                    float3 xformOp:translate = (0.25, 0, 1.82384e-8)
                     uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
                 }
 
@@ -484,21 +484,48 @@ def Xform "Root"
                 float opacity = 0.5
             }
         }
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.47568518, 0.48391885, 0.30131367)
+                float height = 0.48391885
+                float radius = 0.23784259
+                token shapeType = "Box"
+
+                def RealityKitStruct "pose"
+                {
+                    float3 position = (0.087157406, 0.22789034, 1.4901161e-8)
+                }
+            }
+        }
     }
 
     def RealityKitTimeline "EarthMove"
     {
+        reorder nameChildren = ["Track", "Track2"]
         def RealityKitTrack "Track"
         {
-            reorder nameChildren = ["Transform_By", "Transform_By2", "Transform_By22"]
+            reorder nameChildren = ["Transform_By", "Notification", "Transform_By2", "Transform_By22"]
             def RealityKitAction "Transform_By2"
             {
                 string actionKind = "moveBy"
                 int blendLayer = 300
-                double duration = 6
+                double duration = 3
                 uniform token info:id = "AEE728F9-DA4A-42C3-90B8-470BA8313E66"
-                float3 position = (0, -0.1, 0)
-                double startTime = 6
+                float3 position = (0, -0.05, 0)
+                double startTime = 3
                 rel target = </Root/Transform/Sun_Earth_Group/Earth_Group>
                 float2 ui:nodegraph:node:pos = (852.2886, 403.22147)
                 int ui:nodegraph:node:stackingOrder = 2
@@ -513,9 +540,9 @@ def Xform "Root"
             {
                 string actionKind = "moveBy"
                 int blendLayer = 300
-                double duration = 6
+                double duration = 3
                 uniform token info:id = "AEE728F9-DA4A-42C3-90B8-470BA8313E66"
-                float3 position = (0, 0.1, 0)
+                float3 position = (0, 0.05, 0)
                 double startTime = 0
                 rel target = </Root/Transform/Sun_Earth_Group/Earth_Group>
                 float2 ui:nodegraph:node:pos = (832.2886, 383.22147)
@@ -527,13 +554,52 @@ def Xform "Root"
                 }
             }
 
+            def RealityKitAction "Transform_By22"
+            {
+                string actionKind = "moveBy"
+                int blendLayer = 300
+                double duration = 3
+                uniform token info:id = "AEE728F9-DA4A-42C3-90B8-470BA8313E66"
+                float3 position = (0, -0.05, 0)
+                double startTime = 6
+                rel target = </Root/Transform/Sun_Earth_Group/Earth_Group>
+                float2 ui:nodegraph:node:pos = (872.2886, 423.22147)
+                int ui:nodegraph:node:stackingOrder = 3
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "linear"
+                }
+            }
+
+            def RealityKitAction "Transform_By3"
+            {
+                string actionKind = "moveBy"
+                int blendLayer = 300
+                double duration = 3
+                uniform token info:id = "AEE728F9-DA4A-42C3-90B8-470BA8313E66"
+                float3 position = (0, 0.05, 0)
+                double startTime = 9
+                rel target = </Root/Transform/Sun_Earth_Group/Earth_Group>
+                float2 ui:nodegraph:node:pos = (852.2886, 403.22147)
+                int ui:nodegraph:node:stackingOrder = 2
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "linear"
+                }
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
             def RealityKitAction "Notification"
             {
                 string actionKind = "notification"
                 double duration = 0
                 uniform token info:id = "42AB0E4F-F412-4A31-B367-91132122174D"
                 string notificationName = "EarthMove"
-                double startTime = 12.01
+                double startTime = 12
                 rel target = </Root/Transform/Sun_Earth_Group/Earth_Group>
             }
         }

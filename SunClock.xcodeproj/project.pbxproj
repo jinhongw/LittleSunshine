@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C45127D62D15B2B0005BA9CC /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C45127D52D15B2B0005BA9CC /* Localizable.xcstrings */; };
 		C4E9E0562D0C29F9001C1CEA /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = C4E9E0552D0C29F9001C1CEA /* RealityKitContent */; };
 /* End PBXBuildFile section */
 
@@ -21,6 +22,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C45127D52D15B2B0005BA9CC /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C467B7282D12BE1700A416CA /* WeatherKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WeatherKit.framework; path = System/Library/Frameworks/WeatherKit.framework; sourceTree = SDKROOT; };
 		C4E9E0502D0C29F9001C1CEA /* SunClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E9E0542D0C29F9001C1CEA /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		C4E9E0472D0C29F9001C1CEA = {
 			isa = PBXGroup;
 			children = (
+				C45127D52D15B2B0005BA9CC /* Localizable.xcstrings */,
 				C4E9E0522D0C29F9001C1CEA /* SunClock */,
 				C4E9E0532D0C29F9001C1CEA /* Packages */,
 				C4E9E06E2D0C29FB001C1CEA /* SunClockTests */,
@@ -182,6 +185,9 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = C4E9E0472D0C29F9001C1CEA;
 			minimizedProjectReferenceProxies = 1;
@@ -201,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C45127D62D15B2B0005BA9CC /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +259,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Little Sunshine";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to provide weather data.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -280,6 +288,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Little Sunshine";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to provide weather data.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -353,6 +362,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = xros;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -409,6 +419,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = xros;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};

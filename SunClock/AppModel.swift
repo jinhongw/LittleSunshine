@@ -11,10 +11,17 @@ import SwiftUI
 @MainActor
 @Observable
 class AppModel {
+  let clockViewModel: ClockViewModel
   var navPath: [ViewTag] = []
+  var persistentOverlays: Visibility = .visible
   
   enum ViewTag: String {
     case about
     var name: String { rawValue.capitalized }
+  }
+  
+  init() {
+    self.clockViewModel = ClockViewModel()
+    self.clockViewModel.appModel = self
   }
 }

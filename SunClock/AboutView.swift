@@ -11,8 +11,9 @@ import SwiftUI
 import UIKit
 
 struct AboutView: View {
+  @Environment(AppModel.self) private var appModel
   @Environment(\.requestReview) private var requestReview
-  @Environment(\.openURL) var openURL
+  @Environment(\.openURL) private var openURL
   @State private var isShowingMailView = false
   @State private var mailResult: Result<MFMailComposeResult, Error>? = nil
   let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
@@ -38,7 +39,7 @@ struct AboutView: View {
         .resizable()
         .frame(width: 120, height: 120)
       VStack(spacing: 2) {
-        Text("HelioArc")
+        Text("Little Sunshine")
           .font(.title)
         Text("Version: \(appVersion ?? "1.0")")
           .font(.caption)
@@ -148,6 +149,7 @@ struct AboutView: View {
   private var settings: some View {
     NavigationLink {
       SettingView()
+        .environment(appModel)
     } label: {
       HStack {
         Image(systemName: "gearshape.fill")
@@ -256,7 +258,7 @@ enum Config {
   // MARK: - Mail
 
   static let contactEmail = "jinhongw982@gmail.com"
-  static let reportBugSubject = "HelioArc Feedback"
+  static let reportBugSubject = "Little Sunshine Feedback"
 }
 
 #Preview {
