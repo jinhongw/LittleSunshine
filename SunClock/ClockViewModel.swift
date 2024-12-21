@@ -37,11 +37,32 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
   }
   
   func onChangeOfShowCharacter(newValue: Bool) {
-    guard let charater = contentEntity.findEntity(named: "pixel_girl") else { return }
+    guard let charater = contentEntity.findEntity(named: "Characters") else { return }
     if newValue {
       charater.components.set(OpacityComponent(opacity: 1))
     } else {
       charater.components.set(OpacityComponent(opacity: 0))
+    }
+  }
+  
+  func onChangeOfSelectCharacter(newValue: Int) {
+    guard
+      let cutePosegirl = contentEntity.findEntity(named: "PixelGirlCutePose"),
+      let staticPosegirl = contentEntity.findEntity(named: "PixelGirlStaticPose"),
+      let catPosegirl = contentEntity.findEntity(named: "PixelGirlCatPose")
+    else { return }
+    if newValue == 1 {
+      cutePosegirl.components.set(OpacityComponent(opacity: 1))
+      staticPosegirl.components.set(OpacityComponent(opacity: 0))
+      catPosegirl.components.set(OpacityComponent(opacity: 0))
+    } else if newValue == 2 {
+      cutePosegirl.components.set(OpacityComponent(opacity: 0))
+      staticPosegirl.components.set(OpacityComponent(opacity: 1))
+      catPosegirl.components.set(OpacityComponent(opacity: 0))
+    } else if newValue == 3 {
+      cutePosegirl.components.set(OpacityComponent(opacity: 0))
+      staticPosegirl.components.set(OpacityComponent(opacity: 0))
+      catPosegirl.components.set(OpacityComponent(opacity: 1))
     }
   }
   
@@ -50,6 +71,12 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
       onChangeOfShowCharacter(newValue: showCharacter)
     } else {
       onChangeOfShowCharacter(newValue: true)
+    }
+    
+    if let selectCharacter = UserDefaults.standard.value(forKey: "selectCharacterIndex") as? Int {
+      onChangeOfSelectCharacter(newValue: selectCharacter)
+    } else {
+      onChangeOfSelectCharacter(newValue: 1)
     }
   }
 

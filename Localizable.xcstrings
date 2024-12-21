@@ -45,24 +45,24 @@
         }
       }
     },
-    "Credits" : {
+    "Character" : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "クレジット"
+            "value" : "キャラクター"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "致谢"
+            "value" : "角色"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "致謝"
+            "value" : "角色"
           }
         }
       }
@@ -293,6 +293,28 @@
         }
       }
     },
+    "Select character" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャラクターを選択する"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择角色"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇角色"
+          }
+        }
+      }
+    },
     "Send email to jinhongw982@gmail.com" : {
       "localizations" : {
         "ja" : {
@@ -409,6 +431,28 @@
         }
       }
     },
+    "Time" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "時間"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "時間"
+          }
+        }
+      }
+    },
     "Version: %@" : {
       "localizations" : {
         "ja" : {
@@ -455,34 +499,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "時鐘偏好設定"
-          }
-        }
-      }
-    },
-    "致谢与授权详情" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Credits and licensing"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "クレジットとライセンス"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "致谢与授权详情"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "致謝與授權詳情"
           }
         }
       }

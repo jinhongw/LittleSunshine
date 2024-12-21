@@ -15,19 +15,23 @@ struct SunClockApp: App {
     WindowGroup {
       ClockView(viewModel: appModel.clockViewModel)
         .environment(appModel)
+        .volumeBaseplateVisibility(.hidden)
     }
     .windowStyle(.volumetric)
-    .defaultWorldScaling(.dynamic)
+    .defaultWorldScaling(.automatic)
     .volumeWorldAlignment(.gravityAligned)
-    .windowResizability(.contentMinSize)
+    .windowResizability(.contentSize)
     .persistentSystemOverlays(appModel.persistentOverlays)
     .defaultSize(Size3D.init(width: 0.18, height: 0.09, depth: 0.18), in: .meters)
+    .defaultWindowPlacement { content, context in
+      return WindowPlacement(.utilityPanel)
+    }
     
     WindowGroup(id: AppModel.ViewTag.about.name) {
       AboutView()
         .environment(appModel)
     }
-    .windowResizability(.contentMinSize)
+    .windowResizability(.contentSize)
     .defaultWindowPlacement { content, context in
       return WindowPlacement(.trailing(context.windows.last!), size: CGSize.init(width: 480, height: 600))
     }

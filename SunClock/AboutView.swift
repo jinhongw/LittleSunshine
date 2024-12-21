@@ -59,7 +59,6 @@ struct AboutView: View {
       }
       Section {
         settings
-        credits
       }
     }
     .scrollDisabled(true)
@@ -100,7 +99,6 @@ struct AboutView: View {
             .font(.caption)
         }
       }
-
     })
   }
   
@@ -172,34 +170,6 @@ struct AboutView: View {
       }
     }
   }
-  
-  @MainActor
-  @ViewBuilder
-  private var credits: some View {
-    NavigationLink {
-      CreditsView()
-    } label: {
-      HStack {
-        Image(systemName: "info.circle.fill")
-          .resizable()
-          .padding(6.5)
-          .frame(width: 36, height: 36)
-          .offset(x: 0.5)
-          .cornerRadius(18)
-          .background(LinearGradient(
-            gradient: Gradient(colors: [Color(white: 0.6), Color(white: 0.5)]),
-            startPoint: .top,
-            endPoint: .bottom
-          ), in: Circle())
-
-        VStack(alignment: .leading) {
-          Text("Credits")
-          Text("致谢与授权详情")
-            .font(.caption)
-        }
-      }
-    }
-  }
 
   private func presentReview() {
     requestReview()
@@ -263,4 +233,5 @@ enum Config {
 
 #Preview {
   AboutView()
+    .environment(AppModel())
 }

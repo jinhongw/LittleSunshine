@@ -55,6 +55,101 @@ def Xform "Root"
                     float3 xformOp:scale = (0.25, 0.24999993, 0.24999997)
                     float3 xformOp:translate = (0.25, 0, 1.82384e-8)
                     uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                    over "geom"
+                    {
+                        over "realistic"
+                        {
+                            over "materials"
+                            {
+                                over "sun_realistic"
+                                {
+                                    string inputs:sun_realistic_ao_1:varname (
+                                        customData = {
+                                            dictionary realitykit = {
+                                                float2 positionInSubgraph = (177.25, 1036)
+                                            }
+                                        }
+                                    )
+                                    string inputs:sun_realistic_bc:varname (
+                                        customData = {
+                                            dictionary realitykit = {
+                                                float2 positionInSubgraph = (464.25, 1036)
+                                            }
+                                        }
+                                    )
+                                    string inputs:sun_realistic_e:varname (
+                                        customData = {
+                                            dictionary realitykit = {
+                                                float2 positionInSubgraph = (743.75, 1036)
+                                            }
+                                        }
+                                    )
+                                    string inputs:sun_realistic_n:varname (
+                                        customData = {
+                                            dictionary realitykit = {
+                                                float2 positionInSubgraph = (1023.75, 1036)
+                                            }
+                                        }
+                                    )
+                                    string inputs:sun_realistic_r_1:varname (
+                                        customData = {
+                                            dictionary realitykit = {
+                                                float2 positionInSubgraph = (1310.75, 1036)
+                                            }
+                                        }
+                                    )
+                                    token outputs:realitykit:vertex
+                                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1399.75, 479)
+
+                                    over "sun_realistic_e_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (350, 100.5)
+                                    }
+
+                                    over "sun_realistic_bc_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (619.25, 328.5)
+                                    }
+
+                                    over "sun_realistic_01_mat_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (1146.5, 479)
+                                    }
+
+                                    over "sun_realistic_n_mtlx_scale"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (619.25, 848)
+                                    }
+
+                                    over "sun_realistic_n_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (350, 848)
+                                    }
+
+                                    over "sun_realistic_n_mtlx_offset"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (881, 848)
+                                    }
+
+                                    over "sun_realistic_r_1_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (881, 669.5)
+                                    }
+
+                                    over "sun_realistic_ao_1_mtlx"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (619.25, 589.5)
+                                    }
+
+                                    over "Lookup_st"
+                                    {
+                                        float2 ui:nodegraph:node:pos = (91, 479)
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
 
                 def Xform "SpotLight" (
@@ -110,7 +205,7 @@ def Xform "Root"
                 active = true
             )
             {
-                reorder nameChildren = ["pixel_girl", "Earth", "RCP_BehaviorsContainer", "OnAddedToScene", "OnNotification"]
+                reorder nameChildren = ["Earth", "RCP_BehaviorsContainer", "OnAddedToScene", "OnNotification", "Characters"]
                 def "Earth" (
                     active = true
                     customData = {
@@ -306,6 +401,8 @@ def Xform "Root"
                                     {
                                         def RealityKitComponent "GroundingShadow"
                                         {
+                                            bool enableIBLShadow = 1
+                                            bool enableMeshShadow = 1
                                             uniform token info:id = "RealityKit.GroundingShadow"
                                         }
                                     }
@@ -314,6 +411,8 @@ def Xform "Root"
                                     {
                                         def RealityKitComponent "GroundingShadow"
                                         {
+                                            bool enableIBLShadow = 1
+                                            bool enableMeshShadow = 1
                                             uniform token info:id = "RealityKit.GroundingShadow"
                                         }
                                     }
@@ -381,37 +480,77 @@ def Xform "Root"
                     }
                 }
 
-                def "pixel_girl" (
+                def Xform "Characters" (
                     active = true
-                    references = @pixel_girl.usdz@
                 )
                 {
-                    quatf xformOp:orient = (1, 0, 0, 0)
-                    float3 xformOp:scale = (0.033333328, 0.033333328, 0.033333328)
-                    float3 xformOp:translate = (0, 0.1, 0)
-                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-                    over "Meshes" (
-                        customData = {
-                            float3 rotationEulerHint = (0, 3.1415927, 0)
-                        }
+                    def "PixelGirlCutePose" (
+                        active = true
+                        references = @PixelGirlCutePose.usda@
                     )
                     {
-                        quatf xformOp:orient = (-4.371139e-8, 0, 1, 0)
-                        float3 xformOp:scale = (1, 1, 1)
-                        float3 xformOp:translate = (0, 0, 0)
+                        quatf xformOp:orient = (1, 0, 0, 0)
+                        float3 xformOp:scale = (0.99999976, 0.99999976, 0.99999976)
+                        float3 xformOp:translate = (0, 0.127, 0)
                         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
-                        over "Sketchfab_model" (
-                            customData = {
-                                float3 rotationEulerHint = (-1.5707964, 0, 0)
-                            }
-                        )
+                        def RealityKitComponent "HierarchicalFade"
                         {
-                            quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
-                            float3 xformOp:scale = (1, 1, 1)
-                            float3 xformOp:translate = (0, 0, 0)
-                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                            uniform token info:id = "RealityKit.HierarchicalFade"
+                            float opacity = 0
+                        }
+                    }
+
+                    def "PixelGirlStaticPose" (
+                        active = true
+                        references = @PixelGirlStaticPose.usda@
+                    )
+                    {
+                        quatf xformOp:orient = (1, 0, 0, 0)
+                        float3 xformOp:scale = (0.99999976, 0.99999976, 0.99999976)
+                        float3 xformOp:translate = (0, 0.127, 0)
+                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                        def RealityKitComponent "HierarchicalFade"
+                        {
+                            uniform token info:id = "RealityKit.HierarchicalFade"
+                            float opacity = 0
+                        }
+                    }
+
+                    def "PixelGirlCatPose" (
+                        active = true
+                        references = @PixelGirlCatPose.usda@
+                    )
+                    {
+                        quatf xformOp:orient = (1, 0, 0, 0)
+                        float3 xformOp:scale = (0.99999976, 0.99999976, 0.99999976)
+                        float3 xformOp:translate = (0, 0.127, 0)
+                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                        def RealityKitComponent "HierarchicalFade"
+                        {
+                            uniform token info:id = "RealityKit.HierarchicalFade"
+                            float opacity = 0
+                        }
+                    }
+
+                    def RealityKitComponent "EnvironmentLightingConfiguration"
+                    {
+                        uniform token info:id = "RealityKit.EnvironmentLightingConfiguration"
+                    }
+
+                    def RealityKitComponent "VirtualEnvironmentProbe"
+                    {
+                        token blendMode = "single"
+                        uniform token info:id = "RealityKit.VirtualEnvironmentProbe"
+
+                        def RealityKitStruct "Resource1"
+                        {
+                        }
+
+                        def RealityKitStruct "Resource2"
+                        {
                         }
                     }
                 }
@@ -461,6 +600,8 @@ def Xform "Root"
                                 {
                                     def RealityKitComponent "GroundingShadow"
                                     {
+                                        bool enableIBLShadow = 1
+                                        bool enableMeshShadow = 1
                                         uniform token info:id = "RealityKit.GroundingShadow"
                                     }
                                 }
@@ -469,6 +610,8 @@ def Xform "Root"
                                 {
                                     def RealityKitComponent "GroundingShadow"
                                     {
+                                        bool enableIBLShadow = 1
+                                        bool enableMeshShadow = 1
                                         uniform token info:id = "RealityKit.GroundingShadow"
                                     }
                                 }
