@@ -32,6 +32,7 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
 
   override init() {
     super.init()
+    print(#function, "ClockViewModel init")
     setupLocationManager()
     startTimer()
   }
@@ -180,8 +181,7 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
   @MainActor
   func rotateEarthModel()
   {
-    guard let earthEntity = earthEntity,
-          let currentPointEntity = currentPointEntity
+    guard let earthEntity = earthEntity
     else {
       print(#function, "No earthEntity/latitude")
       return
@@ -205,9 +205,6 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
     let angle = acos(dotProduct)
 
     let rotationQuaternion = simd_quatf(angle: angle, axis: normalizedAxis)
-
-    let radius: Float = 0.1
-    currentPointEntity.position = userDirection * radius
 
     earthEntity.transform.rotation = rotationQuaternion
 //    earthEntity.move(to: .init(rotation: rotationQuaternion), relativeTo: earthEntity.parent, duration: 1)

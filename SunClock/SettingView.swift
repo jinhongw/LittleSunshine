@@ -110,7 +110,6 @@ struct SettingView: View {
 
             })
             .buttonStyle(BorderlessButtonStyle())
-            .hoverEffect(.lift)
           }
         }
         .padding(.horizontal, 20)
@@ -123,6 +122,7 @@ struct SettingView: View {
           Link("Learn More", destination: URL(string: "https://skfb.ly/oRsuK")!)
             .font(.caption)
             .foregroundStyle(.link)
+            .buttonStyle(BorderlessButtonStyle())
         }
       }
     }

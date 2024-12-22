@@ -8,6 +8,7 @@
 import RealityKit
 import RealityKitContent
 import SwiftUI
+import TipKit
 
 struct ClockView: View {
   @Environment(AppModel.self) private var appModel
@@ -16,6 +17,10 @@ struct ClockView: View {
   @AppStorage("showCurrentTime") private var showCurrentTime = true
   @AppStorage("showSunriseSunset") private var showSunriseSunset = true
   let viewModel: ClockViewModel
+  var tipGroup = TipGroup {
+    WelcomeTip()
+    LittleTipsTip()
+  }
 
   @State private var currentTime = Date()
   private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -39,6 +44,15 @@ struct ClockView: View {
         fetchingSunriseSunset
       }
     }
+    .task {
+      // Configure and load your tips at app launch.
+      do {
+        try Tips.configure()
+      } catch {
+        // Handle TipKit errors
+        print("Error initializing TipKit \(error.localizedDescription)")
+      }
+    }
   }
 
   @MainActor
@@ -46,13 +60,25 @@ struct ClockView: View {
   private var clockView: some View {
     RealityView { content, attachments in
       await content.add(viewModel.setUpContentEntity())
-      if let timeText = attachments.entity(for: "timeText"), let sunEarthGroup = viewModel.contentEntity.findEntity(named: "Sun_Earth_Group") {
+      if let timeText = attachments.entity(for: "timeText"),
+         let tips = attachments.entity(for: "tips"),
+         let sunEarthGroup = viewModel.contentEntity.findEntity(named: "Sun_Earth_Group"),
+         let character = viewModel.contentEntity.findEntity(named: "Characters")
+      {
         timeText.position = .init(x: 0, y: 0.15, z: -0.12)
         sunEarthGroup.addChild(timeText)
+
+        tips.position = .init(x: 0, y: 0.3, z: 0)
+        tips.scale = .init(x: 2, y: 2, z: 2)
+        character.addChild(tips)
       }
     } attachments: {
       Attachment(id: "timeText") {
         timeText
+      }
+      Attachment(id: "tips") {
+        TipView(tipGroup.currentTip, arrowEdge: .bottom)
+          .tipBackground(.ultraThickMaterial)
       }
     }
     .gesture(
@@ -70,8 +96,14 @@ struct ClockView: View {
   @MainActor
   @ViewBuilder
   private var fetchingLocation: some View {
-    ProgressView {
-      Text("Fetching location...")
+    VStack {
+      ProgressView {
+        Text("Fetching location...")
+      }
+      Link(destination: URL(string: UIApplication.openSettingsURLString)!) {
+        Text("开启位置权限")
+      }
+      .font(.caption)
     }
   }
 
@@ -129,6 +161,54 @@ struct ClockView: View {
     }, label: {
       Text("About")
     })
+  }
+}
+
+struct WelcomeTip: Tip {
+  @Parameter
+  static var alreadyDiscovered: Bool = false
+
+  var title: Text {
+    Text("欢迎使用 Little Sunshine")
+  }
+
+  var message: Text? {
+    Text("仔细观察太阳、地球和人物的位置，你一定能明白其中的奥秘。")
+      .foregroundStyle(.white)
+  }
+
+  var image: Image? {
+    Image(systemName: "quote.bubble")
+  }
+
+  var rules: [Rule] {
+    [
+      #Rule(Self.$alreadyDiscovered) { $0 == false },
+    ]
+  }
+}
+
+struct LittleTipsTip: Tip {
+  @Parameter
+  static var alreadyDiscovered: Bool = false
+
+  var title: Text {
+    Text("小提示")
+  }
+
+  var message: Text? {
+    Text("轻点地球可以隐藏底部导航和窗口控件，让界面更加简洁！")
+      .foregroundStyle(.white)
+  }
+
+  var image: Image? {
+    Image(systemName: "quote.bubble")
+  }
+
+  var rules: [Rule] {
+    [
+      #Rule(Self.$alreadyDiscovered) { $0 == false },
+    ]
   }
 }
 

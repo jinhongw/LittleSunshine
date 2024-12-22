@@ -9,6 +9,7 @@ import MessageUI
 import StoreKit
 import SwiftUI
 import UIKit
+import TipKit
 
 struct AboutView: View {
   @Environment(AppModel.self) private var appModel
@@ -53,12 +54,13 @@ struct AboutView: View {
   private var content: some View {
     List {
       Section {
+        settings
+//        resetTips
+      }
+      Section {
         appStore
         followMe
         feedback
-      }
-      Section {
-        settings
       }
     }
     .scrollDisabled(true)
@@ -66,80 +68,9 @@ struct AboutView: View {
     .padding(.vertical, 20)
     .sheet(isPresented: $isShowingMailView) {
       NavigationStack {
-        MailView(result: $mailResult)
-          .ignoresSafeArea()
-          .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-              Button(action: {
-                isShowingMailView.toggle()
-              }, label: {
-                Image(systemName: "xmark")
-              })
-              .frame(width: 44, height: 44)
-            }
-          }
+        mailView
       }
     }
-  }
-  
-  @MainActor
-  @ViewBuilder
-  private var appStore: some View {
-    Button(action: {
-      presentReview()
-    }, label: {
-      HStack {
-        Image("AppStore")
-          .resizable()
-          .frame(width: 36, height: 36)
-          .cornerRadius(18)
-        VStack(alignment: .leading) {
-          Text("Rate the App")
-          Text("Like the app support me")
-            .font(.caption)
-        }
-      }
-    })
-  }
-  
-  @MainActor
-  @ViewBuilder
-  private var followMe: some View {
-    Button(action: {
-      openURL(URL(string: "https://x.com/easybreezy982")!)
-    }, label: {
-      HStack {
-        Image("Twitter")
-          .resizable()
-          .frame(width: 36, height: 36)
-          .cornerRadius(18)
-        VStack(alignment: .leading) {
-          Text("Follow me")
-          Text("Follow me @easybreezy982 on Twitter/X")
-            .font(.caption)
-        }
-      }
-    })
-  }
-  
-  @MainActor
-  @ViewBuilder
-  private var feedback: some View {
-    Button(action: {
-      isShowingMailView.toggle()
-    }, label: {
-      HStack {
-        Image("Gmail")
-          .resizable()
-          .frame(width: 36, height: 36)
-          .cornerRadius(18)
-        VStack(alignment: .leading) {
-          Text("Feedback")
-          Text("Send email to jinhongw982@gmail.com")
-            .font(.caption)
-        }
-      }
-    })
   }
   
   @MainActor
@@ -169,6 +100,116 @@ struct AboutView: View {
         }
       }
     }
+  }
+  
+  @MainActor
+  @ViewBuilder
+  private var resetTips: some View {
+    HStack {
+      Image(systemName: "quote.bubble.fill")
+        .resizable()
+        .padding(.top, 8)
+        .padding(.horizontal, 7)
+        .padding(.bottom, 6)
+        .frame(width: 36, height: 36)
+        .cornerRadius(18)
+        .background(LinearGradient(
+          gradient: Gradient(colors: [Color(white: 0.6), Color(white: 0.5)]),
+          startPoint: .top,
+          endPoint: .bottom
+        ), in: Circle())
+      Button(action: {
+        do {
+          try Tips.resetDatastore()
+          try Tips.configure()
+        } catch {
+          print("Error initializing TipKit \(error.localizedDescription)")
+        }
+      }, label: {
+        VStack(alignment: .leading) {
+          Text("查看提示")
+          Text("重新显示所有提示")
+            .font(.caption)
+        }
+      })
+    }
+  }
+
+  @MainActor
+  @ViewBuilder
+  private var appStore: some View {
+    Button(action: {
+      presentReview()
+    }, label: {
+      HStack {
+        Image("AppStore")
+          .resizable()
+          .frame(width: 36, height: 36)
+          .cornerRadius(18)
+        VStack(alignment: .leading) {
+          Text("Rate the App")
+          Text("Like the app support me")
+            .font(.caption)
+        }
+      }
+    })
+  }
+
+  @MainActor
+  @ViewBuilder
+  private var followMe: some View {
+    Button(action: {
+      openURL(URL(string: "https://x.com/easybreezy982")!)
+    }, label: {
+      HStack {
+        Image("Twitter")
+          .resizable()
+          .frame(width: 36, height: 36)
+          .cornerRadius(18)
+        VStack(alignment: .leading) {
+          Text("Follow me")
+          Text("Follow me @easybreezy982 on Twitter/X")
+            .font(.caption)
+        }
+      }
+    })
+  }
+
+  @MainActor
+  @ViewBuilder
+  private var feedback: some View {
+    Button(action: {
+      isShowingMailView.toggle()
+    }, label: {
+      HStack {
+        Image("Gmail")
+          .resizable()
+          .frame(width: 36, height: 36)
+          .cornerRadius(18)
+        VStack(alignment: .leading) {
+          Text("Feedback")
+          Text("Send email to jinhongw982@gmail.com")
+            .font(.caption)
+        }
+      }
+    })
+  }
+  
+  @MainActor
+  @ViewBuilder
+  private var mailView: some View {
+    MailView(result: $mailResult)
+      .ignoresSafeArea()
+      .toolbar {
+        ToolbarItem(placement: .cancellationAction) {
+          Button(action: {
+            isShowingMailView.toggle()
+          }, label: {
+            Image(systemName: "xmark")
+          })
+          .frame(width: 44, height: 44)
+        }
+      }
   }
 
   private func presentReview() {

@@ -15,7 +15,7 @@ struct SunClockApp: App {
     WindowGroup {
       ClockView(viewModel: appModel.clockViewModel)
         .environment(appModel)
-        .volumeBaseplateVisibility(.hidden)
+        .volumeBaseplateVisibility(appModel.persistentOverlays == .hidden ? .hidden : .visible)
     }
     .windowStyle(.volumetric)
     .defaultWorldScaling(.automatic)
