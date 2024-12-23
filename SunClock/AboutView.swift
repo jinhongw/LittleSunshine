@@ -26,6 +26,7 @@ struct AboutView: View {
           header
           Divider()
           content
+          appleWeather
         }
         .padding(48)
       }
@@ -55,7 +56,6 @@ struct AboutView: View {
     List {
       Section {
         settings
-//        resetTips
       }
       Section {
         appStore
@@ -63,8 +63,8 @@ struct AboutView: View {
         feedback
       }
     }
+    .frame(width: 480, height: 300)
     .scrollDisabled(true)
-    .frame(width: 480, height: 500)
     .padding(.vertical, 20)
     .sheet(isPresented: $isShowingMailView) {
       NavigationStack {
@@ -193,6 +193,17 @@ struct AboutView: View {
         }
       }
     })
+  }
+  
+  @MainActor
+  @ViewBuilder
+  private var appleWeather: some View {
+    VStack(spacing: 0) {
+      Text("日落日出时间由  Weather 提供")
+        .foregroundStyle(.secondary)
+      Link("Learn More", destination: URL(string: "https://weatherkit.apple.com/legal-attribution.html")!)
+    }
+    .font(.caption)
   }
   
   @MainActor

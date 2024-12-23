@@ -587,6 +587,34 @@
         }
       }
     },
+    "日落日出时间由  Weather 提供" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunrise and sunset times provided by  Weather"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日の出と日の入りは  Weather 提供です"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日落日出时间由  Weather 提供"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日出日落時間由  Weather 提供"
+          }
+        }
+      }
+    },
     "查看提示" : {
       "localizations" : {
         "en" : {

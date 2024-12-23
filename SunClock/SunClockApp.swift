@@ -33,7 +33,7 @@ struct SunClockApp: App {
     }
     .windowResizability(.contentSize)
     .defaultWindowPlacement { content, context in
-      return WindowPlacement(.trailing(context.windows.last!), size: CGSize.init(width: 480, height: 600))
+      return WindowPlacement(.trailing(context.windows.last!), size: CGSize.init(width: 480, height: 680))
     }
   }
 }
