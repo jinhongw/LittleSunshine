@@ -16,6 +16,7 @@ struct SettingView: View {
   @AppStorage("showCurrentDate") private var showCurrentDate = false
   @AppStorage("showSunriseSunset") private var showSunriseSunset = true
   @AppStorage("selectCharacterIndex") private var selectCharacterIndex: Int = 1
+  @AppStorage("earthFloating") private var earthFloating = true
   var body: some View {
     List {
       Section {
@@ -44,6 +45,17 @@ struct SettingView: View {
         }
       } header: {
         Text("Character")
+      }
+      
+      Section {
+        Toggle(isOn: $earthFloating) {
+          Text("Floating animation")
+        }
+        .onChange(of: earthFloating) { oldValue, newValue in
+          appModel.clockViewModel.onChangeOfEarthFloating(newValue: newValue)
+        }
+      } header: {
+        Text("Animation")
       }
     }
     .listStyle(.insetGrouped)

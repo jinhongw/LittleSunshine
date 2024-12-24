@@ -19,24 +19,33 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
   var location: CLLocation?
   var latitude: Double = 0
   var longitude: Double = 0
-  
+
   weak var appModel: AppModel?
   let contentEntity = Entity()
-  
+
   private var timer: Timer?
+
   private let locationManager = CLLocationManager()
   private let weatherService = WeatherService()
   private var sunGroupEntity: Entity?
   private var earthEntity: Entity?
   private var currentPointEntity: Entity?
 
+  private var floatingTimer: Timer?
+  private let floatDistance: Float = 0.025
+  private let floatDuration: Double = 5
+  private var isFloating = true
+  private var floatTotal = 150
+  private var floatCount = 0
+
   override init() {
     super.init()
     print(#function, "ClockViewModel init")
     setupLocationManager()
     startTimer()
+    startFloating()
   }
-  
+
   func onChangeOfShowCharacter(newValue: Bool) {
     guard let charater = contentEntity.findEntity(named: "Characters") else { return }
     if newValue {
@@ -45,12 +54,11 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
       charater.components.set(OpacityComponent(opacity: 0))
     }
   }
-  
+
   func onChangeOfSelectCharacter(newValue: Int) {
-    guard
-      let cutePosegirl = contentEntity.findEntity(named: "PixelGirlCutePose"),
-      let staticPosegirl = contentEntity.findEntity(named: "PixelGirlStaticPose"),
-      let catPosegirl = contentEntity.findEntity(named: "PixelGirlCatPose")
+    guard let cutePosegirl = contentEntity.findEntity(named: "PixelGirlCutePose"),
+          let staticPosegirl = contentEntity.findEntity(named: "PixelGirlStaticPose"),
+          let catPosegirl = contentEntity.findEntity(named: "PixelGirlCatPose")
     else { return }
     if newValue == 1 {
       cutePosegirl.components.set(OpacityComponent(opacity: 1))
@@ -67,17 +75,29 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
     }
   }
   
+  func onChangeOfEarthFloating(newValue: Bool) {
+    if newValue {
+      startFloating()
+    } else {
+      stopFloating()
+    }
+  }
+
   func setUpStorageValue() {
     if let showCharacter = UserDefaults.standard.value(forKey: "showCharacter") as? Bool {
       onChangeOfShowCharacter(newValue: showCharacter)
     } else {
       onChangeOfShowCharacter(newValue: true)
     }
-    
+
     if let selectCharacter = UserDefaults.standard.value(forKey: "selectCharacterIndex") as? Int {
       onChangeOfSelectCharacter(newValue: selectCharacter)
     } else {
       onChangeOfSelectCharacter(newValue: 1)
+    }
+    
+    if let earthFloating = UserDefaults.standard.value(forKey: "earthFloating") as? Bool, !earthFloating {
+      stopFloating()
     }
   }
 
@@ -104,11 +124,38 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
     }
   }
 
-  deinit {
-//    timer?.invalidate()
+  private func startFloating() {
+    floatingTimer = Timer.scheduledTimer(withTimeInterval: floatDuration / 2 / Double(floatTotal), repeats: true) { [weak self] _ in
+      Task { [weak self] in
+        await self?.floating()
+      }
+    }
+  }
+  
+  func stopFloating() {
+    floatingTimer?.invalidate()
+    guard let floatingEntity = contentEntity.findEntity(named: "Earth_Group") else { return }
+    floatingEntity.move(to: Transform(translation: .zero), relativeTo: floatingEntity.parent, duration: 0.5)
   }
 
-  /// 设置 LocationManager
+  @MainActor
+  func floating() {
+    guard let floatingEntity = contentEntity.findEntity(named: "Earth_Group") else { return }
+    if isFloating {
+      floatCount += 1
+    } else {
+      floatCount -= 1
+    }
+
+    let targetPosition = SIMD3<Float>(0, floatDistance * Float(floatCount) / Float(floatTotal), 0)
+    floatingEntity.move(to: Transform(translation: targetPosition), relativeTo: floatingEntity.parent, duration: floatDuration / 2 / Double(floatTotal))
+    if floatCount == floatTotal {
+      isFloating = false
+    } else if floatCount == -floatTotal {
+      isFloating = true
+    }
+  }
+
   private func setupLocationManager() {
     locationManager.delegate = self
     locationManager.requestWhenInUseAuthorization()
@@ -116,7 +163,6 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
     print(#function, "setupLocationManager")
   }
 
-  /// CLLocationManagerDelegate - 更新位置
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     guard let latestLocation = locations.last else { return }
     location = latestLocation
@@ -130,7 +176,6 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
     }
   }
 
-  /// 获取当前地点的日出和日落时间
   func fetchSunriseSunset(for location: CLLocation) async {
     do {
       let weather = try await weatherService.weather(for: location)
@@ -179,8 +224,7 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
   }
 
   @MainActor
-  func rotateEarthModel()
-  {
+  func rotateEarthModel() {
     guard let earthEntity = earthEntity
     else {
       print(#function, "No earthEntity/latitude")

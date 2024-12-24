@@ -47,20 +47,10 @@
       },
       [
         "27E3DA29-0A3F-487F-B886-ACBFEABC8217",
-        "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "27E3DA29-0A3F-487F-B886-ACBFEABC8217",
         "Root",
         "pixel_girl_cutepose",
         "Geom",
-        "Node_62",
-        "Main",
-        "Body"
+        "Node_62"
       ],
       {
         "isExpanded" : true,
@@ -80,7 +70,16 @@
         "Root",
         "pixel_girl_cutepose",
         "Geom",
-        "Node_62"
+        "Node_62",
+        "Main"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "27E3DA29-0A3F-487F-B886-ACBFEABC8217",
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -92,7 +91,8 @@
         "pixel_girl_cutepose",
         "Geom",
         "Node_62",
-        "Main"
+        "Main",
+        "Body"
       ],
       {
         "isExpanded" : true,
@@ -118,10 +118,7 @@
         "56FF43A2-39CC-4B01-AAAB-7AE7CC3D16E4",
         "Root",
         "pixel_girl_catpose",
-        "Geom",
-        "Node_62",
-        "Main",
-        "Body"
+        "Materials"
       ],
       {
         "isExpanded" : true,
@@ -131,7 +128,10 @@
         "56FF43A2-39CC-4B01-AAAB-7AE7CC3D16E4",
         "Root",
         "pixel_girl_catpose",
-        "Materials"
+        "Geom",
+        "Node_62",
+        "Main",
+        "Body"
       ],
       {
         "isExpanded" : true,
@@ -213,6 +213,15 @@
       [
         "B9951896-9231-4552-92D6-AA55817DEE76",
         "Root",
+        "pixel_girl_static"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "B9951896-9231-4552-92D6-AA55817DEE76",
+        "Root",
         "pixel_girl_static",
         "Geom"
       ],
@@ -222,20 +231,7 @@
       },
       [
         "B9951896-9231-4552-92D6-AA55817DEE76",
-        "Root",
-        "pixel_girl_static",
-        "Geom",
-        "Node_62",
-        "Main"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "B9951896-9231-4552-92D6-AA55817DEE76",
-        "Root",
-        "pixel_girl_static"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -256,7 +252,11 @@
       },
       [
         "B9951896-9231-4552-92D6-AA55817DEE76",
-        "Root"
+        "Root",
+        "pixel_girl_static",
+        "Geom",
+        "Node_62",
+        "Main"
       ],
       {
         "isExpanded" : true,
@@ -266,36 +266,6 @@
   },
   "C0BC16EE-72A3-4541-8C9A-3AB5DDF1E4C7" : {
     "objectMetadataList" : [
-      [
-        "C0BC16EE-72A3-4541-8C9A-3AB5DDF1E4C7",
-        "Root",
-        "pixel_girl_cutepose"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "C0BC16EE-72A3-4541-8C9A-3AB5DDF1E4C7",
-        "Root",
-        "pixel_girl_cutepose",
-        "Materials"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "C0BC16EE-72A3-4541-8C9A-3AB5DDF1E4C7",
-        "Root",
-        "pixel_girl_cutepose",
-        "Geom",
-        "Node_62"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
       [
         "C0BC16EE-72A3-4541-8C9A-3AB5DDF1E4C7",
         "Root",
@@ -320,7 +290,37 @@
       },
       [
         "C0BC16EE-72A3-4541-8C9A-3AB5DDF1E4C7",
+        "Root",
+        "pixel_girl_cutepose",
+        "Materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C0BC16EE-72A3-4541-8C9A-3AB5DDF1E4C7",
         "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C0BC16EE-72A3-4541-8C9A-3AB5DDF1E4C7",
+        "Root",
+        "pixel_girl_cutepose",
+        "Geom",
+        "Node_62"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C0BC16EE-72A3-4541-8C9A-3AB5DDF1E4C7",
+        "Root",
+        "pixel_girl_cutepose"
       ],
       {
         "isExpanded" : true,
@@ -333,82 +333,12 @@
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
         "Root",
-        "Timeline",
-        "Track"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
         "Transform",
         "disk",
         "Geom",
         "Sketchfab_model",
-        "root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "SkySphere"
-      ],
-      {
-        "disallowsFraming" : true,
-        "isExpanded" : false,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Sun_Earth_Group",
-        "Earth",
-        "geom",
-        "realistic",
-        "materials"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Sun_Earth_Group"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "EarthMove",
-        "Track2"
+        "root",
+        "GLTF_SceneRootNode"
       ],
       {
         "isExpanded" : true,
@@ -434,7 +364,10 @@
         "Root",
         "Transform",
         "Sun_Earth_Group",
-        "Sun_Group"
+        "Earth",
+        "geom",
+        "realistic",
+        "materials"
       ],
       {
         "isExpanded" : true,
@@ -443,17 +376,7 @@
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
         "Root",
-        "Transform",
-        "disk"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "EarthMove",
+        "onEnded",
         "Track"
       ],
       {
@@ -466,107 +389,6 @@
         "Transform",
         "Sun_Earth_Group",
         "Earth",
-        "geom",
-        "realistic"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Retro_computer",
-        "Meshes",
-        "Sketchfab_model",
-        "Collada_visual_scene_group"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "disk",
-        "Geom",
-        "Sketchfab_model"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "OnTap",
-        "Track"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Sun_Earth_Group",
-        "Sun_Group",
-        "Sun",
-        "geom",
-        "realistic",
-        "geo"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "disk",
-        "Geom",
-        "Sketchfab_model",
-        "root",
-        "GLTF_SceneRootNode",
-        "Torus_0"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "SunMove",
-        "Track2"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Retro_computer",
-        "Meshes",
-        "Sketchfab_model"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Sun_Earth_Group",
-        "Sun_Group",
-        "Sun",
         "geom"
       ],
       {
@@ -578,75 +400,8 @@
         "Root",
         "Transform",
         "Retro_computer",
-        "Meshes"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Sun_Earth_Group",
-        "Earth",
-        "geom",
-        "realistic",
-        "geo",
-        "lod0"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Sun_Earth_Group",
-        "user_3d_icon",
-        "Materials"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Timeline",
-        "Track2"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Sun_Earth_Group",
-        "Sun_Group",
-        "Sun",
-        "geom",
-        "realistic",
-        "geo",
-        "lod0"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Sun_Earth_Group",
-        "Earth",
-        "geom",
-        "realistic",
-        "materials",
-        "usdpreviewsurface8sg"
+        "Meshes",
+        "Sketchfab_model"
       ],
       {
         "isExpanded" : true,
@@ -691,7 +446,49 @@
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
         "Root",
+        "Transform",
+        "disk"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Transform",
+        "disk",
+        "Geom",
+        "Sketchfab_model",
+        "root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
         "Earth_Move",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "EarthMove"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "CharacterPlay",
         "Track"
       ],
       {
@@ -703,8 +500,201 @@
         "Root",
         "Transform",
         "Sun_Earth_Group",
-        "Sun_Group",
-        "Sun",
+        "Earth",
+        "geom",
+        "realistic",
+        "geo"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Timeline",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "SunMove",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Transform",
+        "Retro_computer",
+        "Meshes"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Transform",
+        "Sun_Earth_Group",
+        "user_3d_icon",
+        "Materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Transform",
+        "disk",
+        "Materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "EarthMove",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "OnTap",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Timeline",
+        "Track2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Transform",
+        "Earth",
+        "geom",
+        "realistic",
+        "materials",
+        "usdpreviewsurface8sg"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Transform",
+        "disk",
+        "Geom",
+        "Sketchfab_model",
+        "root",
+        "GLTF_SceneRootNode",
+        "Torus_0"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Timeline2",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Transform",
+        "Retro_computer",
+        "Meshes",
+        "Sketchfab_model",
+        "Collada_visual_scene_group"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Transform",
+        "Sun_Earth_Group",
+        "Earth",
+        "geom",
+        "realistic",
+        "geo",
+        "lod0"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "CharacterPlay"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Transform",
+        "disk",
+        "Geom",
+        "Sketchfab_model"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "Transform",
+        "Sun_Earth_Group",
+        "Earth",
         "geom",
         "realistic"
       ],
@@ -715,7 +705,27 @@
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
         "Root",
+        "Transform"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
+        "SkySphere"
+      ],
+      {
+        "disallowsFraming" : true,
+        "isExpanded" : false,
+        "isLocked" : false
+      },
+      [
+        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root",
         "Transform",
+        "Sun_Earth_Group",
         "Earth",
         "geom",
         "realistic",
@@ -740,30 +750,8 @@
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
         "Root",
-        "EarthMove"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
         "Transform",
-        "disk",
-        "Materials"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Sun_Earth_Group",
-        "Sun_Group",
-        "Sun"
+        "Sun_Earth_Group"
       ],
       {
         "isExpanded" : true,
@@ -773,79 +761,7 @@
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
         "Root",
         "SunMove",
-        "Track"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "onEnded",
-        "Track"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Sun_Earth_Group",
-        "Earth_Group",
-        "Characters"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "disk",
-        "Geom",
-        "Sketchfab_model",
-        "root",
-        "GLTF_SceneRootNode"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Timeline2",
-        "Track"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Sun_Earth_Group",
-        "Earth",
-        "geom"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root",
-        "Transform",
-        "Sun_Earth_Group",
-        "Earth",
-        "geom",
-        "realistic",
-        "geo"
+        "Track2"
       ],
       {
         "isExpanded" : true,
@@ -855,6 +771,52 @@
   },
   "F1E6179C-6459-4997-9FE1-C1B428CC70DE" : {
     "objectMetadataList" : [
+      [
+        "F1E6179C-6459-4997-9FE1-C1B428CC70DE",
+        "Root",
+        "pixel_girl_catpose",
+        "Geom",
+        "Node_62",
+        "Main",
+        "Body",
+        "Skirt"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "F1E6179C-6459-4997-9FE1-C1B428CC70DE",
+        "Root",
+        "pixel_girl_catpose",
+        "Geom",
+        "Node_62"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "F1E6179C-6459-4997-9FE1-C1B428CC70DE",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "F1E6179C-6459-4997-9FE1-C1B428CC70DE",
+        "Root",
+        "pixel_girl_catpose",
+        "Geom",
+        "Node_62",
+        "Main",
+        "Body"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
       [
         "F1E6179C-6459-4997-9FE1-C1B428CC70DE",
         "Root",
@@ -879,54 +841,8 @@
       },
       [
         "F1E6179C-6459-4997-9FE1-C1B428CC70DE",
-        "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "F1E6179C-6459-4997-9FE1-C1B428CC70DE",
         "Root",
         "pixel_girl_catpose"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "F1E6179C-6459-4997-9FE1-C1B428CC70DE",
-        "Root",
-        "pixel_girl_catpose",
-        "Geom",
-        "Node_62"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "F1E6179C-6459-4997-9FE1-C1B428CC70DE",
-        "Root",
-        "pixel_girl_catpose",
-        "Geom",
-        "Node_62",
-        "Main",
-        "Body",
-        "Skirt"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "F1E6179C-6459-4997-9FE1-C1B428CC70DE",
-        "Root",
-        "pixel_girl_catpose",
-        "Geom",
-        "Node_62",
-        "Main",
-        "Body"
       ],
       {
         "isExpanded" : true,

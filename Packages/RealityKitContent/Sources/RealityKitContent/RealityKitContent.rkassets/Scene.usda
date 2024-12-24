@@ -9,7 +9,7 @@ reorder rootPrims = ["Root", "GridMaterial"]
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Earth", "Sun", "SkySphere", "SkyMaterial", "EarthMove"]
+    reorder nameChildren = ["Earth", "Sun", "SkySphere", "SkyMaterial", "EarthMove", "CharacterPlay"]
     rel material:binding = None (
         bindMaterialAs = "weakerThanDescendants"
     )
@@ -164,11 +164,11 @@ def Xform "Root"
 
                     def RealityKitComponent "SpotLight"
                     {
-                        float attenuationFalloffExponent = 1
+                        float attenuationFalloffExponent = 0
                         float3 color = (0.8900806, 1, 0.70418864)
                         uniform token info:id = "RealityKit.SpotLight"
                         float innerAngle = 90
-                        float intensity = 800
+                        float intensity = 7000
                         float outerAngle = 120
 
                         def RealityKitStruct "Shadow"
@@ -422,68 +422,13 @@ def Xform "Root"
                     }
                 }
 
-                def RealityKitComponent "RCP_BehaviorsContainer"
-                {
-                    rel behaviors = [
-                        </Root/Transform/Sun_Earth_Group/Earth_Group/OnAddedToScene>,
-                        </Root/Transform/Sun_Earth_Group/Earth_Group/OnNotification>,
-                    ]
-                    uniform token info:id = "RCP.BehaviorsContainer"
-                }
-
-                def Preliminary_Behavior "OnAddedToScene"
-                {
-                    rel actions = </Root/Transform/Sun_Earth_Group/Earth_Group/OnAddedToScene/Action>
-                    uniform bool exclusive
-                    rel triggers = </Root/Transform/Sun_Earth_Group/Earth_Group/OnAddedToScene/Trigger>
-
-                    def Preliminary_Trigger "Trigger"
-                    {
-                        rel affectedObjects = </Root/Transform/Sun_Earth_Group/Earth_Group>
-                        token info:id = "SceneTransition"
-                    }
-
-                    def Preliminary_Action "Action"
-                    {
-                        rel affectedObjects = </Root>
-                        rel animationLibraryKey = </Root/EarthMove>
-                        rel animationLibraryKeyOverrideKey = </Root/Transform/Sun_Earth_Group/Earth_Group/OnAddedToScene/Trigger>
-                        token info:id = "PlayTimeline"
-                        int loops = 0
-                        int performCount = 1
-                        token type = "serial"
-                    }
-                }
-
-                def Preliminary_Behavior "OnNotification"
-                {
-                    rel actions = </Root/Transform/Sun_Earth_Group/Earth_Group/OnNotification/Action>
-                    uniform bool exclusive
-                    rel triggers = </Root/Transform/Sun_Earth_Group/Earth_Group/OnNotification/Trigger>
-
-                    def Preliminary_Trigger "Trigger"
-                    {
-                        rel affectedObjects = </Root/Transform/Sun_Earth_Group/Earth_Group>
-                        string identifier = "EarthMove"
-                        token info:id = "Notification"
-                    }
-
-                    def Preliminary_Action "Action"
-                    {
-                        rel affectedObjects = </Root>
-                        rel animationLibraryKey = </Root/EarthMove>
-                        rel animationLibraryKeyOverrideKey = </Root/Transform/Sun_Earth_Group/Earth_Group/OnNotification/Trigger>
-                        token info:id = "PlayTimeline"
-                        int loops = 0
-                        int performCount = 1
-                        token type = "serial"
-                    }
-                }
-
                 def Xform "Characters" (
                     active = true
                 )
                 {
+                    float3 xformOp:translate = (0, 0.127, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
                     def "PixelGirlCutePose" (
                         active = true
                         references = @PixelGirlCutePose.usda@
@@ -491,13 +436,13 @@ def Xform "Root"
                     {
                         quatf xformOp:orient = (1, 0, 0, 0)
                         float3 xformOp:scale = (0.99999976, 0.99999976, 0.99999976)
-                        float3 xformOp:translate = (0, 0.127, 0)
+                        float3 xformOp:translate = (0, 0, 0)
                         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
                         def RealityKitComponent "HierarchicalFade"
                         {
                             uniform token info:id = "RealityKit.HierarchicalFade"
-                            float opacity = 0
+                            float opacity = 1
                         }
                     }
 
@@ -508,7 +453,7 @@ def Xform "Root"
                     {
                         quatf xformOp:orient = (1, 0, 0, 0)
                         float3 xformOp:scale = (0.99999976, 0.99999976, 0.99999976)
-                        float3 xformOp:translate = (0, 0.127, 0)
+                        float3 xformOp:translate = (0, 0, 0)
                         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
                         def RealityKitComponent "HierarchicalFade"
@@ -525,7 +470,7 @@ def Xform "Root"
                     {
                         quatf xformOp:orient = (1, 0, 0, 0)
                         float3 xformOp:scale = (0.99999976, 0.99999976, 0.99999976)
-                        float3 xformOp:translate = (0, 0.127, 0)
+                        float3 xformOp:translate = (0, 0, 0)
                         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
                         def RealityKitComponent "HierarchicalFade"
@@ -628,30 +573,28 @@ def Xform "Root"
             }
         }
 
-        def RealityKitComponent "InputTarget"
-        {
-            uniform token info:id = "RealityKit.InputTarget"
-        }
-
         def RealityKitComponent "Collider"
         {
             uint group = 1
             uniform token info:id = "RealityKit.Collider"
             uint mask = 4294967295
-            token type = "Default"
+            token type = "Trigger"
 
             def RealityKitStruct "Shape"
             {
-                float3 extent = (0.47568518, 0.48391885, 0.30131367)
-                float height = 0.48391885
-                float radius = 0.23784259
+                float3 extent = (0.42568517, 0.48423222, 0.30131367)
                 token shapeType = "Box"
 
                 def RealityKitStruct "pose"
                 {
-                    float3 position = (0.087157406, 0.22789034, 1.4901161e-8)
+                    float3 position = (0.062157415, 0.22804703, 1.4901161e-8)
                 }
             }
+        }
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
         }
     }
 
@@ -732,10 +675,7 @@ def Xform "Root"
                     token type = "linear"
                 }
             }
-        }
 
-        def RealityKitTrack "Track2"
-        {
             def RealityKitAction "Notification"
             {
                 string actionKind = "notification"
@@ -744,6 +684,26 @@ def Xform "Root"
                 string notificationName = "EarthMove"
                 double startTime = 12
                 rel target = </Root/Transform/Sun_Earth_Group/Earth_Group>
+            }
+        }
+    }
+
+    def RealityKitTimeline "CharacterPlay"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Emphasize"
+            {
+                string actionKind = "emphasize"
+                int blendLayer = 300
+                double duration = 2
+                uniform token info:id = "A46F4096-E60E-4FEC-A3E1-7F692D3DA86F"
+                token motionType = "spin"
+                double startTime = 0
+                token style = "playful"
+                rel target = </Root/Transform/Sun_Earth_Group/Earth_Group/Characters>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
             }
         }
     }

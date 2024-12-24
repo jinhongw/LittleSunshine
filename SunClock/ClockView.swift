@@ -30,8 +30,8 @@ struct ClockView: View {
   @State private var axisX: Float = 0
   @State private var axisY: Float = 1
   @State private var axisZ: Float = 0
-
   @State private var currentTime = Date()
+  
   private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
   var body: some View {
@@ -89,7 +89,7 @@ struct ClockView: View {
         timeText.position = .init(x: 0, y: 0.15, z: -0.12)
         sunEarthGroup.addChild(timeText)
 
-        tips.position = .init(x: 0, y: 0.3, z: 0)
+        tips.position = .init(x: 0, y: 0.15, z: 0)
         tips.scale = .init(x: 2, y: 2, z: 2)
         character.addChild(tips)
       }
