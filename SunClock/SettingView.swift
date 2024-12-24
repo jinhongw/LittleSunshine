@@ -13,6 +13,7 @@ struct SettingView: View {
   @Environment(AppModel.self) private var appModel
   @AppStorage("showCharacter") private var showCharacter = true
   @AppStorage("showCurrentTime") private var showCurrentTime = true
+  @AppStorage("showCurrentDate") private var showCurrentDate = false
   @AppStorage("showSunriseSunset") private var showSunriseSunset = true
   @AppStorage("selectCharacterIndex") private var selectCharacterIndex: Int = 1
   var body: some View {
@@ -20,6 +21,9 @@ struct SettingView: View {
       Section {
         Toggle(isOn: $showCurrentTime) {
           Text("Show current time")
+        }
+        Toggle(isOn: $showCurrentDate) {
+          Text("Show current date")
         }
         Toggle(isOn: $showSunriseSunset) {
           Text("Show sunrise/sunset time")

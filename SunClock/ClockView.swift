@@ -13,45 +13,66 @@ import TipKit
 struct ClockView: View {
   @Environment(AppModel.self) private var appModel
   @Environment(\.openWindow) private var openWindow
-  @Environment(\.dismissWindow) private var dismissWindow
   @AppStorage("showCurrentTime") private var showCurrentTime = true
+  @AppStorage("showCurrentDate") private var showCurrentDate = false
   @AppStorage("showSunriseSunset") private var showSunriseSunset = true
+
   let viewModel: ClockViewModel
   var tipGroup = TipGroup {
     WelcomeTip()
     LittleTipsTip()
   }
 
+  let defaultSize = Size3D(width: 320.0, height: 320.0, depth: 320.0)
+  @State private var modelYRotation: Double = 0
+  @State private var dragModelYRotation: Double = 0
+  @State private var angle: Float = 0
+  @State private var axisX: Float = 0
+  @State private var axisY: Float = 1
+  @State private var axisZ: Float = 0
+
   @State private var currentTime = Date()
   private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
   var body: some View {
-    VStack {
-      if let _ = viewModel.sunrise,
-         let _ = viewModel.sunset
-      {
-        clockView
-          .toolbar {
-            if appModel.persistentOverlays == .visible {
-              ToolbarItem {
-                aboutButton
+    GeometryReader3D { proxy in
+      let _ = print(#function, "proxy.size \(proxy.size) scaleEffect \(proxy.size / defaultSize)")
+      VStack {
+        if let _ = viewModel.sunrise,
+           let _ = viewModel.sunset
+        {
+          clockView
+            .scaleEffect(proxy.size / defaultSize)
+            .toolbar {
+              if appModel.persistentOverlays == .visible {
+                ToolbarItem {
+                  aboutButton
+                }
+                if modelYRotation != 0 {
+                  ToolbarItem {
+                    resetRotationButton
+                  }
+                }
               }
             }
-          }
-      } else if viewModel.location == nil {
-        fetchingLocation
-      } else {
-        fetchingSunriseSunset
+        } else if viewModel.location == nil {
+          fetchingLocation
+        } else {
+          fetchingSunriseSunset
+        }
+      }
+      .task {
+        configureTips()
       }
     }
-    .task {
-      // Configure and load your tips at app launch.
-      do {
-        try Tips.configure()
-      } catch {
-        // Handle TipKit errors
-        print("Error initializing TipKit \(error.localizedDescription)")
-      }
+  }
+
+  @MainActor
+  func configureTips() {
+    do {
+      try Tips.configure()
+    } catch {
+      print("Error initializing TipKit \(error.localizedDescription)")
     }
   }
 
@@ -81,6 +102,11 @@ struct ClockView: View {
           .tipBackground(.ultraThickMaterial)
       }
     }
+    .rotation3DEffect(.radians(modelYRotation), axis: (x: 0, y: 1, z: 0), anchor: .center)
+    .rotation3DEffect(
+      .degrees(Double(angle * 180 / .pi)),
+      axis: (x: CGFloat(axisX), y: CGFloat(axisY), z: CGFloat(axisZ))
+    )
     .gesture(
       TapGesture().targetedToAnyEntity().onEnded { _ in
         print(#function, "onTapGesture \(appModel.persistentOverlays)")
@@ -91,27 +117,71 @@ struct ClockView: View {
         }
       }
     )
+    .gesture(
+      DragGesture()
+        .onChanged { value in
+          let translation = value.translation
+          let dampingFactor: CGFloat = 40.0 // Smaller damping factor for less damping effect
+          let rootDegree: Double = 1.3
+          let xAngle = -pow(abs(translation.height), 1.0 / rootDegree) / dampingFactor * (translation.height < 0 ? -1 : 1)
+          let yAngle = pow(abs(translation.width), 1.0 / rootDegree) / dampingFactor * (translation.width < 0 ? -1 : 1)
+
+          let xRotation = simd_quatf(angle: Float(xAngle), axis: SIMD3(1, 0, 0))
+          let yRotation = simd_quatf(angle: Float(yAngle), axis: SIMD3(0, 1, 0))
+          let currentDragRotation = simd_mul(xRotation, yRotation)
+          withAnimation(.spring) {
+            angle = currentDragRotation.angle
+            axisX = currentDragRotation.axis.x
+            axisY = currentDragRotation.axis.y
+            axisZ = currentDragRotation.axis.z
+          }
+          dragModelYRotation = yAngle
+        }
+        .onEnded { _ in
+          withAnimation(.spring) {
+            angle = 0
+            axisX = 0
+            axisY = 1
+            axisZ = 0
+            modelYRotation += dragModelYRotation
+          }
+        }
+    )
   }
 
   @MainActor
   @ViewBuilder
   private var fetchingLocation: some View {
-    VStack {
-      ProgressView {
-        Text("Fetching location...")
+    HStack {
+      Spacer(minLength: 0)
+      VStack {
+        Spacer(minLength: 0)
+        ProgressView {
+          Text("Fetching location...")
+        }
+        Link(destination: URL(string: UIApplication.openSettingsURLString)!) {
+          Text("开启位置权限")
+        }
+        .font(.caption)
+        Spacer(minLength: 0)
       }
-      Link(destination: URL(string: UIApplication.openSettingsURLString)!) {
-        Text("开启位置权限")
-      }
-      .font(.caption)
+      Spacer(minLength: 0)
     }
   }
 
   @MainActor
   @ViewBuilder
   private var fetchingSunriseSunset: some View {
-    ProgressView {
-      Text("Fetching sunrise and sunset...")
+    VStack {
+      Spacer(minLength: 0)
+      HStack {
+        Spacer(minLength: 0)
+        ProgressView {
+          Text("Fetching sunrise and sunset...")
+        }
+        Spacer(minLength: 0)
+      }
+      Spacer(minLength: 0)
     }
   }
 
@@ -119,6 +189,10 @@ struct ClockView: View {
   @ViewBuilder
   private var timeText: some View {
     VStack {
+      if showCurrentDate {
+        Text("\(currentTime.formatted(date: .abbreviated, time: .omitted))")
+          .font(.system(size: 30, weight: .heavy))
+      }
       if showCurrentTime {
         Text("\(currentTime.formatted(date: .omitted, time: .shortened))")
           .font(.system(size: 80, weight: .heavy))
@@ -160,6 +234,18 @@ struct ClockView: View {
       openWindow(id: AppModel.ViewTag.about.name)
     }, label: {
       Text("About")
+    })
+  }
+
+  @MainActor
+  @ViewBuilder
+  private var resetRotationButton: some View {
+    Button(action: {
+      withAnimation(.spring) {
+        modelYRotation = 0
+      }
+    }, label: {
+      Text("Reset")
     })
   }
 }
