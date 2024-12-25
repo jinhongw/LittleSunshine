@@ -83,7 +83,7 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
     }
   }
 
-  func setUpStorageValue() {
+  private func setUpStorageValue() {
     if let showCharacter = UserDefaults.standard.value(forKey: "showCharacter") as? Bool {
       onChangeOfShowCharacter(newValue: showCharacter)
     } else {
@@ -132,14 +132,14 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
     }
   }
   
-  func stopFloating() {
+  private func stopFloating() {
     floatingTimer?.invalidate()
     guard let floatingEntity = contentEntity.findEntity(named: "Earth_Group") else { return }
     floatingEntity.move(to: Transform(translation: .zero), relativeTo: floatingEntity.parent, duration: 0.5)
   }
 
   @MainActor
-  func floating() {
+  private func floating() {
     guard let floatingEntity = contentEntity.findEntity(named: "Earth_Group") else { return }
     if isFloating {
       floatCount += 1
@@ -214,6 +214,14 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
       print(#function, "日落到次日日出区间 \(angleDegrees) \(String(describing: sunGroup.parent?.name))")
     } else {
       print(#function, "不在当天日出日落范围内，太阳归位到默认位置")
+      if let location = location {
+        Task {
+          print(#function, "Next day fetchSunriseSunset")
+          self.sunrise = nil
+          self.sunset = nil
+          await fetchSunriseSunset(for: location)
+        }
+      }
       angleRadians = 0
     }
     if animated {

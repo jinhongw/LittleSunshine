@@ -10,12 +10,21 @@ import SwiftUI
 @main
 struct SunClockApp: App {
   @State private var appModel = AppModel()
+  @Environment(\.scenePhase) private var scenePhase
 
   var body: some Scene {
     WindowGroup {
       ClockView(viewModel: appModel.clockViewModel)
         .environment(appModel)
         .volumeBaseplateVisibility(appModel.persistentOverlays == .hidden ? .hidden : .visible)
+        .onChange(of: scenePhase, { oldValue, newValue in
+          if newValue == .active, let location = appModel.clockViewModel.location {
+            Task {
+              print(#function, "scenePhase \(scenePhase) \(location)")
+              await appModel.clockViewModel.fetchSunriseSunset(for: location)
+            }
+          }
+        })
     }
     .windowStyle(.volumetric)
     .defaultWorldScaling(.automatic)
