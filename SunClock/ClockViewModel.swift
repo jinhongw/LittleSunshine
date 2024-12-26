@@ -195,6 +195,7 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
     guard let sunrise = sunrise, let sunset = sunset, let sunGroup = sunGroupEntity else { return }
     let now = Date()
 
+    let previousDaySunset = Calendar.current.date(byAdding: .day, value: -1, to: sunset)!
     let nextDaySunrise = Calendar.current.date(byAdding: .day, value: 1, to: sunrise)!
 
     let angleRadians: Float
@@ -212,7 +213,14 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
       let angleDegrees = 180.0 + rotationRatio * 180.0
       angleRadians = Float(angleDegrees * .pi / 180)
       print(#function, "日落到次日日出区间 \(angleDegrees) \(String(describing: sunGroup.parent?.name))")
-    } else {
+    } else if now >= previousDaySunset && now < sunrise {
+      let totalNightDuration = sunrise.timeIntervalSince(previousDaySunset)
+      let elapsedTimeSincePreviousSunset = now.timeIntervalSince(previousDaySunset)
+      let rotationRatio = elapsedTimeSincePreviousSunset / totalNightDuration
+      let angleDegrees = 180.0 + rotationRatio * 180.0
+      angleRadians = Float(angleDegrees * .pi / 180)
+      print(#function, "昨日落日到今日日出区间 \(angleDegrees)")
+  } else {
       print(#function, "不在当天日出日落范围内，太阳归位到默认位置")
       if let location = location {
         Task {
