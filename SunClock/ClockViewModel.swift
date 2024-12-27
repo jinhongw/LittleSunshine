@@ -74,7 +74,7 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
       catPosegirl.components.set(OpacityComponent(opacity: 1))
     }
   }
-  
+
   func onChangeOfEarthFloating(newValue: Bool) {
     if newValue {
       startFloating()
@@ -95,14 +95,15 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
     } else {
       onChangeOfSelectCharacter(newValue: 1)
     }
-    
+
     if let earthFloating = UserDefaults.standard.value(forKey: "earthFloating") as? Bool, !earthFloating {
       stopFloating()
     }
   }
 
   func setUpContentEntity() async -> Entity {
-    guard let scene = try? await Entity(named: "Scene", in: realityKitContentBundle),
+    guard earthEntity == nil, sunGroupEntity == nil,
+          let scene = try? await Entity(named: "Scene", in: realityKitContentBundle),
           let sunGroup = scene.findEntity(named: "Sun_Group"),
           let earth = scene.findEntity(named: "Earth")
     else { return contentEntity }
@@ -131,7 +132,7 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
       }
     }
   }
-  
+
   private func stopFloating() {
     floatingTimer?.invalidate()
     guard let floatingEntity = contentEntity.findEntity(named: "Earth_Group") else { return }
@@ -220,7 +221,7 @@ class ClockViewModel: NSObject, @preconcurrency CLLocationManagerDelegate {
       let angleDegrees = 180.0 + rotationRatio * 180.0
       angleRadians = Float(angleDegrees * .pi / 180)
       print(#function, "昨日落日到今日日出区间 \(angleDegrees)")
-  } else {
+    } else {
       print(#function, "不在当天日出日落范围内，太阳归位到默认位置")
       if let location = location {
         Task {
