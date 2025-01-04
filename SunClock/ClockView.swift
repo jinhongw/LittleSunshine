@@ -13,6 +13,7 @@ import TipKit
 struct ClockView: View {
   @Environment(AppModel.self) private var appModel
   @Environment(\.openWindow) private var openWindow
+  @Environment(\.dismissWindow) private var dismissWindow
   @AppStorage("showCurrentTime") private var showCurrentTime = true
   @AppStorage("showCurrentDate") private var showCurrentDate = false
   @AppStorage("showSunriseSunset") private var showSunriseSunset = true
@@ -231,6 +232,7 @@ struct ClockView: View {
   @ViewBuilder
   private var aboutButton: some View {
     Button(action: {
+      dismissWindow(id: AppModel.ViewTag.about.name)
       openWindow(id: AppModel.ViewTag.about.name)
     }, label: {
       Text("About")
