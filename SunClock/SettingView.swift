@@ -14,6 +14,7 @@ struct SettingView: View {
   @AppStorage("showCharacter") private var showCharacter = true
   @AppStorage("showCurrentTime") private var showCurrentTime = true
   @AppStorage("showCurrentDate") private var showCurrentDate = false
+  @AppStorage("showCurrentWeekday") private var showCurrentWeekday = true
   @AppStorage("showSunriseSunset") private var showSunriseSunset = true
   @AppStorage("selectCharacterIndex") private var selectCharacterIndex: Int = 1
   @AppStorage("earthFloating") private var earthFloating = true
@@ -25,6 +26,9 @@ struct SettingView: View {
         }
         Toggle(isOn: $showCurrentDate) {
           Text("Show current date")
+        }
+        Toggle(isOn: $showCurrentWeekday) {
+          Text("Show current weekday")
         }
         Toggle(isOn: $showSunriseSunset) {
           Text("Show sunrise/sunset time")

@@ -16,6 +16,7 @@ struct ClockView: View {
   @Environment(\.dismissWindow) private var dismissWindow
   @AppStorage("showCurrentTime") private var showCurrentTime = true
   @AppStorage("showCurrentDate") private var showCurrentDate = false
+  @AppStorage("showCurrentWeekday") private var showCurrentWeekday = true
   @AppStorage("showSunriseSunset") private var showSunriseSunset = true
 
   let viewModel: ClockViewModel
@@ -190,8 +191,14 @@ struct ClockView: View {
   @ViewBuilder
   private var timeText: some View {
     VStack {
-      if showCurrentDate {
+      if showCurrentDate && showCurrentWeekday {
+        Text("\(currentTime.formatted(date: .complete, time: .omitted))")
+          .font(.system(size: 30, weight: .heavy))
+      } else if showCurrentDate {
         Text("\(currentTime.formatted(date: .abbreviated, time: .omitted))")
+          .font(.system(size: 30, weight: .heavy))
+      } else if showCurrentWeekday {
+        Text("\(currentTime.formatted(.dateTime.weekday()))")
           .font(.system(size: 30, weight: .heavy))
       }
       if showCurrentTime {

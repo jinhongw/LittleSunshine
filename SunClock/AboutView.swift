@@ -62,8 +62,15 @@ struct AboutView: View {
         followMe
         feedback
       }
+      Section {
+        touchdeskLink
+        easyballLink
+      } header: {
+        Text("Made by easybreezy")
+          .font(.subheadline)
+      }
     }
-    .frame(width: 480, height: 300)
+    .frame(width: 480, height: 480)
     .scrollDisabled(true)
     .padding(.vertical, 20)
     .sheet(isPresented: $isShowingMailView) {
@@ -222,6 +229,47 @@ struct AboutView: View {
         }
       }
   }
+  
+  @MainActor
+  @ViewBuilder
+  private var easyballLink: some View {
+    Button(action: {
+      openURL(URL(string: "https://apps.apple.com/us/app/easyball-airshot/id6642670140")!)
+    }, label: {
+      HStack {
+        Image("easyball_icon")
+          .resizable()
+          .frame(width: 36, height: 36)
+          .cornerRadius(18)
+        VStack(alignment: .leading) {
+          Text("EasyBall - AirShot")
+          Text("Shoot as if it’s real life")
+            .font(.caption)
+        }
+      }
+    })
+  }
+  
+  @MainActor
+  @ViewBuilder
+  private var touchdeskLink: some View {
+    Button(action: {
+      openURL(URL(string: "https://apps.apple.com/us/app/touchdesk-desktop-canvas/id6740164313")!)
+    }, label: {
+      HStack {
+        Image("touchdesk_icon")
+          .resizable()
+          .frame(width: 36, height: 36)
+          .cornerRadius(18)
+        VStack(alignment: .leading) {
+          Text("TouchDesk - Desktop Canvas")
+          Text("Your desk, an infinite canvas")
+            .font(.caption)
+        }
+      }
+    })
+  }
+  
 
   private func presentReview() {
     requestReview()

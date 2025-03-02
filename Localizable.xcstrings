@@ -95,6 +95,9 @@
         }
       }
     },
+    "EasyBall - AirShot" : {
+      "shouldTranslate" : false
+    },
     "Feedback" : {
       "localizations" : {
         "ja" : {
@@ -327,6 +330,28 @@
         }
       }
     },
+    "Made by easybreezy" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "easybreezy 制作"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "由 easybreezy 制作"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "由 easybreezy 製作"
+          }
+        }
+      }
+    },
     "Rate the App" : {
       "localizations" : {
         "ja" : {
@@ -443,6 +468,28 @@
         }
       }
     },
+    "Shoot as if it’s real life" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現実のようにシュートする"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "就像现实中一样尽情投篮"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "像現實中投籃一樣"
+          }
+        }
+      }
+    },
     "Show character" : {
       "localizations" : {
         "ja" : {
@@ -509,6 +556,28 @@
         }
       }
     },
+    "Show current weekday" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在の曜日を表示"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示当前星期几"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示當前星期幾"
+          }
+        }
+      }
+    },
     "Show sunrise/sunset time" : {
       "localizations" : {
         "ja" : {
@@ -553,6 +622,28 @@
         }
       }
     },
+    "TouchDesk - Desktop Canvas" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TouchDesk - デスク絵板"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TouchDesk - 桌面画板"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TouchDesk - 桌面畫板"
+          }
+        }
+      }
+    },
     "Version: %@" : {
       "localizations" : {
         "ja" : {
@@ -571,6 +662,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "版本：%@"
+          }
+        }
+      }
+    },
+    "Your desk, an infinite canvas" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "あなたのデスク、無限のキャンバス"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的桌面，无限画板"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的桌面，無限畫板"
           }
         }
       }
