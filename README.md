@@ -1,5 +1,13 @@
 <p align="center">
-<img height="256" src="https://github.com/jinhongw/LittleSunshine/blob/main/SunClock/Assets.xcassets/sun_clock_icon.imageset/sun_clock_icon.png?raw=true" />
+<img src="https://github.com/jinhongw/LittleSunshine/blob/main/SunClock/Assets.xcassets/sun_clock_icon.imageset/sun_clock_icon.png?raw=true" style="height: 256px; max-height: 256px;" />
+<style>
+@media (max-width: 768px) {
+  img[src*="sun_clock_icon.png"] {
+    height: 168px !important;
+    max-height: 168px !important;
+  }
+}
+</style>
 </p>
 <h1 align="center">Little Sunshine</h1>
 
