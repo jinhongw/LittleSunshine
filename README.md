@@ -1,6 +1,9 @@
-<p align="center" style="padding: 0 60px;">
-<img src="https://github.com/jinhongw/LittleSunshine/blob/main/SunClock/Assets.xcassets/sun_clock_icon.imageset/sun_clock_icon.png?raw=true" style="max-width: 256px; width: 100%; height: auto;" />
-</p>
+<div align="center">
+<picture>
+  <source media="(max-width: 520px)" srcset="https://github.com/jinhongw/LittleSunshine/blob/main/SunClock/Assets.xcassets/sun_clock_icon.imageset/sun_clock_icon.png?raw=true" width="128">
+  <img src="https://github.com/jinhongw/LittleSunshine/blob/main/SunClock/Assets.xcassets/sun_clock_icon.imageset/sun_clock_icon.png?raw=true" width="256">
+</picture>
+</div>
 <h1 align="center">Little Sunshine</h1>
 
 <p align="center">
