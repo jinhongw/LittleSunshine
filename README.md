@@ -1,6 +1,6 @@
 <div align="center">
 <picture>
-  <source media="(max-width: 520px)" srcset="https://github.com/jinhongw/LittleSunshine/blob/main/SunClock/Assets.xcassets/sun_clock_icon.imageset/sun_clock_icon.png?raw=true" width="128">
+  <source media="(max-width: 520px)" srcset="https://github.com/jinhongw/LittleSunshine/blob/main/SunClock/Assets.xcassets/sun_clock_icon.imageset/sun_clock_icon.png?raw=true" width="168">
   <img src="https://github.com/jinhongw/LittleSunshine/blob/main/SunClock/Assets.xcassets/sun_clock_icon.imageset/sun_clock_icon.png?raw=true" width="256">
 </picture>
 </div>
