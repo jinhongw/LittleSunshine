@@ -1,14 +1,9 @@
-<p align="center">
-<img src="https://github.com/jinhongw/LittleSunshine/blob/main/SunClock/Assets.xcassets/sun_clock_icon.imageset/sun_clock_icon.png?raw=true" style="height: 256px; max-height: 256px;" />
-<style>
-@media (max-width: 768px) {
-  img[src*="sun_clock_icon.png"] {
-    height: 168px !important;
-    max-height: 168px !important;
-  }
-}
-</style>
-</p>
+<div align="center">
+<picture>
+  <source media="(max-width: 520px)" srcset="https://github.com/jinhongw/LittleSunshine/blob/main/SunClock/Assets.xcassets/sun_clock_icon.imageset/sun_clock_icon.png?raw=true" width="128">
+  <img src="https://github.com/jinhongw/LittleSunshine/blob/main/SunClock/Assets.xcassets/sun_clock_icon.imageset/sun_clock_icon.png?raw=true" width="256">
+</picture>
+</div>
 <h1 align="center">Little Sunshine</h1>
 
 <p align="center">
